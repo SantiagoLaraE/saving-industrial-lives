@@ -1,0 +1,508 @@
+/* 1. Posicionamiento --> static, absolute, relative, fixed
+2. Modelo de caja (Box model) --> margin, border, padding, content
+3. Tipografía --> tipos, tamaños de fuente, etc
+4. Estilos visuales --> box-shadow, border-radius, gradient, etc
+5. Otros --> reglas CSS y más */
+
+:root {
+  --dark-gray: #202020;
+  --yellow: #fbba2a;
+  --gray: #4b4b4c;
+  --light-gray: #ececec;
+  --white: #ffffff;
+  --b-radius: 10px;
+  --transition: all 0.4s ease;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: "Rubik", sans-serif;
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+}
+main {
+  padding-top: 100px;
+}
+a {
+  text-decoration: none;
+}
+.primary-btn {
+  color: var(--dark-gray);
+  background-color: var(--yellow);
+  font-size: 1.6rem;
+  padding: 6px 12px;
+  border-radius: var(--b-radius);
+  font-weight: 500;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+.primary-btn:hover {
+  background-color: var(--dark-gray);
+  color: var(--yellow);
+}
+h2,
+h3 {
+  font-size: 3.2rem;
+  font-weight: 500;
+  margin-bottom: 1.8rem;
+  text-transform: uppercase;
+}
+p {
+  font-size: 1.6rem;
+  font-weight: 300;
+  margin-bottom: 1.8rem;
+  line-height: 2.4rem;
+}
+
+#header {
+  width: 100%;
+  background-color: var(--dark-gray);
+  padding: 16px;
+  position: fixed;
+  z-index: 10;
+}
+#nav-bar {
+  background-color: var(--dark-gray);
+}
+#nav-bar ul {
+  list-style: none;
+}
+#nav-bar ul li a {
+  display: block;
+  padding: 6px 12px;
+  font-size: 1.6rem;
+  color: var(--white);
+  border-radius: 2rem;
+  font-weight: 300;
+}
+#nav-bar ul li a:hover {
+  background-color: var(--yellow);
+  color: var(--dark-gray);
+}
+#header.show-menu #nav-bar {
+  margin-top: 8px;
+  display: block;
+  background-color: var(--dark-gray);
+}
+#header .container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+#header-img {
+  width: 250px;
+  transition: var(--transition);
+}
+#nav-icon {
+  display: inline-block;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  top: 12px;
+}
+#nav-icon div {
+  width: 32px;
+  height: 4px;
+  background-color: var(--yellow);
+  margin: 8px 0;
+  transition: var(--transition);
+  border-radius: 4px;
+}
+.change div:nth-child(1) {
+  transform: rotate(-45deg) translate(-8px, 8px);
+}
+
+.change div:nth-child(2) {
+  opacity: 0;
+}
+
+.change div:nth-child(3) {
+  transform: rotate(45deg) translate(-8px, -9px);
+}
+#header #nav-bar {
+  display: none;
+}
+/*SLIDER*/
+#slider {
+  overflow: hidden;
+  position: relative;
+}
+.Slides {
+  display: none;
+}
+.Slides img {
+  width: auto;
+  vertical-align: middle;
+  height: 75vh;
+  min-height: 400px;
+}
+
+.slider-container {
+  width: 100%;
+  position: relative;
+  margin: auto;
+}
+
+.slider-prev,
+.slider-next {
+  cursor: pointer;
+  position: absolute;
+  top: 35%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+  transition: var(--transition);
+  border-radius: var(--b-radius);
+  user-select: none;
+}
+.slider-prev {
+  left: 16px;
+}
+.slider-next {
+  right: 16px;
+}
+
+.slider-prev:hover,
+.slider-next:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.slider-text {
+  display: inline-block;
+  top: 35%;
+  left: 50%;
+  width: 80%;
+  padding: 8px 12px;
+  position: absolute;
+  text-align: center;
+  transform: translate(-50%, -40%);
+  color: var(--white);
+}
+.slider-text span {
+  display: inline-block;
+  margin-bottom: 16px;
+  width: 100px;
+  height: 8px;
+  border-radius: 4px;
+  background-color: var(--yellow);
+}
+.slider-text h2 {
+  font-size: 3.2rem;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  font-weight: 400;
+}
+.slider-text p {
+  font-size: 1.8rem;
+  font-weight: 300;
+  margin-bottom: 24px;
+}
+.slider-text a:last-child {
+  margin-left: 16px;
+}
+
+.slider-container-dots {
+  text-align: center;
+  position: absolute;
+  bottom: 64px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.slider-dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: var(--transition);
+}
+
+.active,
+.dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* HOME NOSOTROS, BENEFICIOS, PRODUCTOS*/
+
+.section {
+  width: 100%;
+  padding: 64px 16px;
+}
+
+#nosotros .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 32px;
+  align-items: center;
+}
+
+#nosotros .nosotros-img img {
+  max-width: 100%;
+  height: auto;
+}
+#beneficios {
+  background: url("../img/lo-que-tu-empresa-necesita-saving-industrial-lives.png")
+    center/cover no-repeat;
+}
+#beneficios .beneficios-text {
+  color: var(--white);
+}
+.beneficios-text {
+  max-width: 650px;
+}
+#nuestros-productos .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 32px;
+  align-items: center;
+}
+#nuestros-productos .title {
+  text-align: center;
+  margin-bottom: 3.2rem;
+}
+#nuestros-productos .nuestros-productos__item {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+#nuestros-productos .nuestros-productos__item img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  border-radius: 3.2rem;
+  transition: var(--transition);
+}
+
+#nuestros-productos .nuestros-productos__item p {
+  text-align: center;
+  display: block;
+  color: var(--dark-gray);
+  font-size: 1.6rem;
+  padding: 6px 12px;
+  border-radius: var(--b-radius);
+  font-weight: 500;
+  transition: var(--transition);
+  margin-top: 16px;
+  text-transform: uppercase;
+}
+#nuestros-productos .nuestros-productos__item:hover img {
+  transform: scale(1.05);
+  box-shadow: 0px 10px 14px rgba(0, 0, 0, 0.16);
+}
+#nuestros-productos .nuestros-productos__item:hover p {
+  background-color: var(--yellow);
+}
+
+#beneficios-2 {
+  background: url("../img/soluciones-industriales-saving-industrial-lives.png")
+    center/cover no-repeat;
+}
+#beneficios-2 .beneficios-text {
+  text-align: right;
+  margin-left: auto;
+}
+/*FORMULARIO HOME*/
+#contacto{
+  background: url('../img/fondo-formulario-saving-industrial-lives.png') center/cover no-repeat;
+}
+#contacto .container{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) ;
+  border-radius: var(--b-radius);
+  overflow: hidden;
+}
+.formulario-contacto{
+  padding:32px;
+  background-color: var(--dark-gray);
+}
+.formulario-contacto .formulario-contacto__title{
+  font-size: 2.4rem;
+  text-align: center;
+  margin-bottom: 2.0rem;
+  color:var(--yellow);
+  font-weight: 500;
+}
+.formulario-contacto .input-form label{
+  display: block;
+  color: var(--light-gray);
+  font-size: 1.6rem;
+  font-weight: 300;
+  margin-bottom: 8px;
+  padding-left: 16px;
+}
+.formulario-contacto .input-form input, .formulario-contacto .input-form textarea{
+  display: block;
+  width: 100%;
+  font-size: 2.0rem;
+  padding: 8px 16px;
+  background-color: var(--gray);
+  border: none;
+  color:var(--white);
+  margin-bottom: 16px;
+  border-radius: var(--b-radius);
+  font-family: "Rubik", sans-serif;
+  resize: none;
+}
+.formulario-contacto button[type="submit"]{
+  width: 100%;
+  border: none;
+  font-weight: 500;
+  padding:8px;
+}
+
+#contacto .maps iframe{
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+}
+/*FOOTER*/
+
+footer{
+  background-color: var(--dark-gray);
+  text-align: center;
+  padding: 32px;
+}
+
+footer img{
+  width: 200px;
+  margin-bottom: 32px;
+}
+footer h5{
+  font-size: 1.8rem;
+  color: var(--yellow);
+  font-weight: 500;
+  margin: 32px 0 8px;
+}
+footer svg{
+  width: 32px;
+  height: 32px;
+  margin-right: 16px;
+  transition: var(--transition);
+}
+footer .siguenos-info a:last-child svg{
+  margin-right: 0;
+}
+footer .siguenos-info a:hover svg{
+  transform: scale(1.2);
+}
+
+footer .contactanos-info a{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8rem;
+  color:var(--yellow);
+  font-weight: 300;
+}
+footer .footer-copy{
+  font-size: 1.4rem;
+  color: var(--yellow);
+  margin-top: 32px;
+}
+@media screen and (min-width: 750px) {
+  #header {
+    padding: 16px 32px;
+  }
+  #header .container {
+    margin: 0 auto;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .container {
+    max-width: 750px;
+  }
+  #nav-bar ul {
+    display: flex;
+    justify-content: space-around;
+  }
+  #header #nav-bar {
+    display: block;
+  }
+  #nav-bar ul li a {
+    display: inline-block;
+  }
+  #nav-icon {
+    display: none;
+  }
+  /*Slider*/
+  .Slides img {
+    width: 100%;
+    height: auto;
+  }
+  .slider-text {
+    width: 450px;
+    left: 10%;
+    text-align: left;
+    transform: translate(0, -40%);
+  }
+  #nosotros {
+    padding: 96px 16px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  #header {
+    padding: 16px 32px;
+  }
+  .container {
+    max-width: 1000px;
+  }
+  .slider-text {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    left: 50%;
+    text-align: left;
+    transform: translate(-50%, -40%);
+  }
+  .slider-text p {
+    max-width: 550px;
+  }
+
+  .slider-container-dots {
+    bottom: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
